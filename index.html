@@ -271,7 +271,7 @@
         }
 
         function handleLogin() {
-            const authorizeUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=user:email,read:user`;
+            const authorizeUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&scope=repo,delete_repo,user:email,read:user`;
             window.location.href = authorizeUrl;
         }
 
