@@ -11,250 +11,613 @@
             box-sizing: border-box;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #79c0ff;
+            --accent-danger: #f85149;
+            --success: #3fb950;
+            --border-color: #30363d;
+            --shadow-sm: 0 3px 12px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        html, body {
+            height: 100%;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
             padding: 20px;
+            background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
         }
 
         .container {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            max-width: 500px;
             width: 100%;
+            max-width: 600px;
         }
 
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease-out;
         }
 
-        .subtitle {
-            color: #666;
-            margin-bottom: 30px;
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 8px 24px rgba(88, 166, 255, 0.2);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: var(--text-secondary);
             font-size: 14px;
+            font-weight: 500;
         }
 
+        /* Login Section */
         .login-section {
             display: none;
+            animation: fadeIn 0.4s ease-out;
         }
 
         .login-section.active {
             display: block;
         }
 
+        .login-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 32px rgba(88, 166, 255, 0.15);
+        }
+
+        .login-text {
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
         .github-btn {
             width: 100%;
-            padding: 12px 20px;
-            background: #333;
-            color: white;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--bg-primary);
             border: none;
-            border-radius: 6px;
-            font-size: 16px;
+            border-radius: 8px;
+            font-size: 15px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 16px rgba(88, 166, 255, 0.2);
         }
 
         .github-btn:hover {
-            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(88, 166, 255, 0.3);
+        }
+
+        .github-btn:active {
+            transform: translateY(0);
         }
 
         .github-btn svg {
             width: 20px;
             height: 20px;
+            fill: currentColor;
         }
 
-        .loading {
-            text-align: center;
-            color: #666;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .token-section {
+        /* Loading Section */
+        .loading-section {
             display: none;
+            text-align: center;
+            animation: fadeIn 0.4s ease-out;
         }
 
-        .token-section.active {
+        .loading-section.active {
             display: block;
         }
 
-        .success-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            color: #155724;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
+        .loader {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 20px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
-        .token-box {
-            background: #f5f5f5;
-            border: 2px solid #ddd;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 20px;
-            word-break: break-all;
-            font-family: "Courier New", monospace;
-            font-size: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            color: #333;
+        .loading-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
         }
 
-        .token-label {
+        /* Success Section */
+        .success-section {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .success-section.active {
+            display: block;
+        }
+
+        .success-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(63, 185, 80, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 14px;
+            margin-bottom: 24px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .user-info {
-            background: #f9f9f9;
-            border: 1px solid #eee;
+        .success-badge::before {
+            content: '✓';
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 24px rgba(88, 166, 255, 0.1);
+        }
+
+        .info-card-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .token-display {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            line-height: 1.5;
+            word-break: break-all;
+            max-height: 120px;
+            overflow-y: auto;
+            color: var(--accent-secondary);
+            margin-bottom: 12px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-color) transparent;
+        }
+
+        .token-display::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .token-display::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .token-display::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 3px;
+        }
+
+        .token-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .copy-btn, .reveal-btn {
+            flex: 1;
+            padding: 10px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
             border-radius: 6px;
-            padding: 15px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .copy-btn:hover, .reveal-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            background: rgba(88, 166, 255, 0.1);
+        }
+
+        .copy-btn.copied {
+            border-color: var(--success);
+            color: var(--success);
+            background: rgba(63, 185, 80, 0.1);
+        }
+
+        /* User Info */
+        .user-profile {
+            display: flex;
+            gap: 16px;
             margin-bottom: 20px;
         }
 
-        .user-info-item {
+        .user-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.2);
+        }
+
+        .user-meta {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .user-login {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .user-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .detail-item {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--accent-secondary);
+        }
+
+        .detail-secondary {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Actions */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary, .btn-secondary {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 8px;
             font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid transparent;
         }
 
-        .user-info-item:last-child {
-            border-bottom: none;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: var(--bg-primary);
+            box-shadow: 0 8px 16px rgba(88, 166, 255, 0.2);
         }
 
-        .user-info-item strong {
-            color: #333;
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(88, 166, 255, 0.3);
         }
 
-        .user-info-item span {
-            color: #666;
-            word-break: break-all;
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
 
         .logout-btn {
             width: 100%;
             padding: 12px 20px;
-            background: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 6px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--accent-danger);
+            color: var(--accent-danger);
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            margin-top: 20px;
         }
 
         .logout-btn:hover {
-            background: #5a6268;
+            background: rgba(248, 81, 73, 0.1);
         }
 
-        .error {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
+        /* Error */
+        .error-box {
             display: none;
+            background: rgba(248, 81, 73, 0.1);
+            border: 1px solid var(--accent-danger);
+            color: #ff7b72;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            animation: slideDown 0.3s ease-out;
         }
 
-        .error.active {
+        .error-box.active {
             display: block;
         }
 
-        .copy-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            margin-top: 10px;
+        .error-title {
+            font-weight: 600;
+            margin-bottom: 4px;
         }
 
-        .copy-btn:hover {
-            background: #5568d3;
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                max-width: 100%;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .login-card {
+                padding: 24px;
+            }
+
+            .user-details {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        /* Utility */
+        .mt-20 {
+            margin-top: 20px;
+        }
+
+        .text-center {
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"></path>
+                    <path d="M10 17l-4-4m8 0l-4 4"></path>
+                </svg>
+            </div>
+            <h1>GitHub OAuth</h1>
+            <p>Secure authentication with GitHub</p>
+        </div>
+
         <!-- Login Section -->
         <div class="login-section active" id="loginSection">
-            <h1>🔐 GitHub OAuth Demo</h1>
-            <p class="subtitle">Sign in with your GitHub account</p>
-            <div class="error" id="error"></div>
-            <button class="github-btn" id="loginBtn" onclick="handleLogin()">
-                <svg fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-                Sign in with GitHub
-            </button>
+            <div class="login-card">
+                <p class="login-text">Sign in to access your GitHub account and explore its full capabilities</p>
+                <button class="github-btn" onclick="handleLogin()" id="loginBtn">
+                    <svg viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Sign in with GitHub
+                </button>
+            </div>
         </div>
 
         <!-- Loading Section -->
-        <div class="loading" id="loadingSection">
-            <div class="spinner"></div>
-            <p>Authenticating...</p>
+        <div class="loading-section" id="loadingSection">
+            <div class="loader"></div>
+            <p class="loading-text">Authenticating with GitHub...</p>
         </div>
 
-        <!-- Token Section -->
-        <div class="token-section" id="tokenSection">
-            <div class="success-message">✅ Authentication Successful!</div>
-            
-            <div class="token-label">Access Token:</div>
-            <div class="token-box" id="tokenBox">
-                <div id="tokenContent"></div>
-                <button class="copy-btn" onclick="copyToken()">Copy Token</button>
+        <!-- Success Section -->
+        <div class="success-section" id="successSection">
+            <div class="error-box" id="errorBox"></div>
+
+            <div class="success-badge">Authentication Successful</div>
+
+            <!-- User Info Card -->
+            <div class="info-card">
+                <div class="info-card-title">Profile Information</div>
+                <div class="user-profile">
+                    <div class="user-avatar" id="userAvatarPlaceholder">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="user-meta">
+                        <div class="user-name" id="userName">Loading...</div>
+                        <div class="user-login" id="userLogin">@username</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="token-label">User Information:</div>
-            <div class="user-info" id="userInfo"></div>
+            <!-- Stats Card -->
+            <div class="info-card">
+                <div class="info-card-title">GitHub Statistics</div>
+                <div class="user-details">
+                    <div class="detail-item">
+                        <div class="detail-label">Public Repos</div>
+                        <div class="detail-value" id="publicRepos">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Followers</div>
+                        <div class="detail-value" id="followers">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Following</div>
+                        <div class="detail-value" id="following">0</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Gists</div>
+                        <div class="detail-value" id="gists">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Card -->
+            <div class="info-card">
+                <div class="info-card-title">Email</div>
+                <div class="detail-value" id="userEmail" style="font-size: 13px; color: var(--text-secondary); word-break: break-all;">No public email</div>
+            </div>
+
+            <!-- Access Token Card -->
+            <div class="info-card">
+                <div class="info-card-title">Access Token</div>
+                <div class="token-display" id="tokenDisplay"></div>
+                <div class="token-actions">
+                    <button class="copy-btn" onclick="copyToken()">Copy Token</button>
+                    <button class="reveal-btn" id="revealBtn" onclick="toggleTokenVisibility()">Reveal</button>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="action-buttons">
+                <button class="btn-secondary" onclick="downloadToken()">Download Token</button>
+            </div>
 
             <button class="logout-btn" onclick="logout()">Sign Out</button>
         </div>
     </div>
 
     <script>
+        // Configuration
         const CLIENT_ID = "Ov23libqWc7fzBMY6BOv";
-        const CLIENT_SECRET = "adb138335a9a6727fdb50f43d3fa4aa94e6057bb";
-        const REDIRECT_URI = "https://dry-grass-2dfb.shreyasbkg-1.workers.dev/callback";
+        const REDIRECT_URI = "https://sbgenius.github.io/a";
+        const WORKER_URL = "https://dry-grass-2dfb.shreyasbkg-1.workers.dev/callback";
 
-        // Check if returning from OAuth
+        let fullToken = null;
+        let tokenRevealed = false;
+
+        // Check auth callback on page load
         function checkAuthCallback() {
             const params = new URLSearchParams(window.location.search);
             const code = params.get("code");
@@ -265,7 +628,7 @@
             } else {
                 const token = localStorage.getItem("github_token");
                 if (token) {
-                    displayToken(token);
+                    displaySuccess(token);
                 }
             }
         }
@@ -281,7 +644,7 @@
                 const data = await response.json();
 
                 if (data.error) {
-                    showError(`Error: ${data.error} - ${data.error_description || ""}`);
+                    showError(`${data.error}: ${data.error_description || ""}`);
                     hideLoading();
                     return;
                 }
@@ -289,9 +652,8 @@
                 const accessToken = data.access_token;
                 localStorage.setItem("github_token", accessToken);
 
-                // Get user info
                 await getUserInfo(accessToken);
-                displayToken(accessToken);
+                displaySuccess(accessToken);
             } catch (error) {
                 showError(`Error: ${error.message}`);
                 hideLoading();
@@ -303,94 +665,144 @@
                 const response = await fetch("https://api.github.com/user", {
                     headers: {
                         Authorization: `token ${token}`,
-                        "Accept": "application/vnd.github.v3+json"
+                        Accept: "application/vnd.github.v3+json"
                     }
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Failed to fetch user info: ${response.status}`);
+                    throw new Error(`Failed to fetch user info`);
                 }
 
                 const user = await response.json();
                 localStorage.setItem("github_user", JSON.stringify(user));
-                displayUserInfo(user);
+                updateUserDisplay(user);
             } catch (error) {
                 console.error("Error fetching user info:", error);
             }
         }
 
-        function displayUserInfo(user) {
-            const userInfoDiv = document.getElementById("userInfo");
-            userInfoDiv.innerHTML = `
-                <div class="user-info-item">
-                    <strong>Login:</strong>
-                    <span>${user.login}</span>
-                </div>
-                <div class="user-info-item">
-                    <strong>Name:</strong>
-                    <span>${user.name || "N/A"}</span>
-                </div>
-                <div class="user-info-item">
-                    <strong>Email:</strong>
-                    <span>${user.email || "N/A"}</span>
-                </div>
-                <div class="user-info-item">
-                    <strong>Public Repos:</strong>
-                    <span>${user.public_repos}</span>
-                </div>
-                <div class="user-info-item">
-                    <strong>Followers:</strong>
-                    <span>${user.followers}</span>
-                </div>
-            `;
+        function updateUserDisplay(user) {
+            document.getElementById("userName").textContent = user.name || user.login;
+            document.getElementById("userLogin").textContent = `@${user.login}`;
+            document.getElementById("publicRepos").textContent = user.public_repos || 0;
+            document.getElementById("followers").textContent = user.followers || 0;
+            document.getElementById("following").textContent = user.following || 0;
+            document.getElementById("gists").textContent = user.public_gists || 0;
+            document.getElementById("userEmail").textContent = user.email || "No public email";
+
+            if (user.avatar_url) {
+                const avatar = document.querySelector(".user-avatar");
+                avatar.style.background = `url('${user.avatar_url}') center/cover`;
+                avatar.textContent = "";
+            }
         }
 
-        function displayToken(token) {
+        function displaySuccess(token) {
+            fullToken = token;
             hideLoading();
             document.getElementById("loginSection").classList.remove("active");
-            document.getElementById("tokenSection").classList.add("active");
-            document.getElementById("tokenContent").textContent = token;
+            document.getElementById("successSection").classList.add("active");
+            displayTokenPreview();
 
             const user = localStorage.getItem("github_user");
             if (user) {
-                displayUserInfo(JSON.parse(user));
+                updateUserDisplay(JSON.parse(user));
             }
+
+            // Clean URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
+        function displayTokenPreview() {
+            const preview = fullToken.substring(0, 20) + "•••••••••••••••••••";
+            document.getElementById("tokenDisplay").textContent = preview;
+        }
+
+        function toggleTokenVisibility() {
+            const display = document.getElementById("tokenDisplay");
+            const btn = document.getElementById("revealBtn");
+
+            tokenRevealed = !tokenRevealed;
+
+            if (tokenRevealed) {
+                display.textContent = fullToken;
+                btn.textContent = "👁️ Hide";
+            } else {
+                displayTokenPreview();
+                btn.textContent = "👁️ Reveal";
+            }
+        }
+
+        function copyToken() {
+            navigator.clipboard.writeText(fullToken).then(() => {
+                const btn = event.target;
+                const original = btn.textContent;
+                btn.textContent = "Copied!";
+                btn.classList.add("copied");
+
+                setTimeout(() => {
+                    btn.textContent = original;
+                    btn.classList.remove("copied");
+                }, 2000);
+            });
+        }
+
+        function downloadToken() {
+            const user = localStorage.getItem("github_user");
+            const userData = user ? JSON.parse(user) : {};
+
+            const data = {
+                access_token: fullToken,
+                user: {
+                    login: userData.login,
+                    name: userData.name,
+                    email: userData.email,
+                    avatar_url: userData.avatar_url,
+                    public_repos: userData.public_repos,
+                    followers: userData.followers,
+                    following: userData.following
+                },
+                downloaded_at: new Date().toISOString()
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `github-oauth-${userData.login || "token"}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
         }
 
         function showLoading() {
             document.getElementById("loginSection").classList.remove("active");
-            document.getElementById("loadingSection").style.display = "block";
+            document.getElementById("loadingSection").classList.add("active");
         }
 
         function hideLoading() {
-            document.getElementById("loadingSection").style.display = "none";
+            document.getElementById("loadingSection").classList.remove("active");
         }
 
         function showError(message) {
-            const errorDiv = document.getElementById("error");
-            errorDiv.textContent = message;
-            errorDiv.classList.add("active");
-        }
-
-        function copyToken() {
-            const token = localStorage.getItem("github_token");
-            if (token) {
-                navigator.clipboard.writeText(token).then(() => {
-                    alert("Token copied to clipboard!");
-                });
-            }
+            const errorBox = document.getElementById("errorBox");
+            errorBox.innerHTML = `<div class="error-title">Authentication Error</div>${message}`;
+            errorBox.classList.add("active");
         }
 
         function logout() {
             localStorage.removeItem("github_token");
             localStorage.removeItem("github_user");
-            document.getElementById("tokenSection").classList.remove("active");
+            fullToken = null;
+            tokenRevealed = false;
+
+            document.getElementById("successSection").classList.remove("active");
             document.getElementById("loginSection").classList.add("active");
-            // Clean URL
+            document.getElementById("errorBox").classList.remove("active");
+
             window.history.replaceState({}, document.title, window.location.pathname);
         }
 
-        // Run on page load
+        // Initialize
         document.addEventListener("DOMContentLoaded", checkAuthCallback);
     </script>
 </body>
